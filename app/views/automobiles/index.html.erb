@@ -1,31 +1,42 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Automobiles</h1>
-
-<table>
+<%- model_class = Automobile -%>
+<div class="page-header">
+  <h1><%=t '.title', default: model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Brand</th>
-      <th>Model</th>
-      <th>Modification</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:brand) %></th>
+      <th><%= model_class.human_attribute_name(:model) %></th>
+      <th><%= model_class.human_attribute_name(:modification) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', default: t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @automobiles.each do |automobile| %>
       <tr>
-        <td><%= automobile.brand %></td>
-        <td><%= automobile.model %></td>
-        <td><%= automobile.modification %></td>
-        <td><%= link_to 'Show', automobile %></td>
-        <td><%= link_to 'Edit', edit_automobile_path(automobile) %></td>
-        <td><%= link_to 'Destroy', automobile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= automobile.id %></td>
+          <td><%= automobile.brand %></td>
+          <td><%= automobile.model %></td>
+          <td><%= automobile.modification %></td>
+        <td><%=l automobile.created_at, format: :long %></td>
+        <td>
+          <%= link_to automobile_path(automobile), class: 'btn btn-xs', title: "#{ t('.show', default: t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+          <%- end -%>
+          <%= link_to edit_automobile_path(automobile), class: 'btn btn-xs', title: "#{ t('.edit', default: t('helpers.links.edit')) }" do %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to automobile_path(automobile), method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-xs', title: "#{ t('.destroy', default: t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Automobile', new_automobile_path %>
+<%= link_to t('.new', default: t("helpers.links.new")),
+            new_automobile_path,
+            class: 'btn btn-primary' %>

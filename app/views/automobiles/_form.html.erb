@@ -1,29 +1,28 @@
-<%= form_for(@automobile) do |f| %>
-  <% if @automobile.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@automobile.errors.count, "error") %> prohibited this automobile from being saved:</h2>
-
-      <ul>
-      <% @automobile.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for @automobile, html: { class: 'form-horizontal' } do |f| %>
+  <div class="form-group">
+    <%= f.label :brand, class: 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :brand, class: 'text_field form-control' %>
     </div>
-  <% end %>
+  </div>
+  <div class="form-group">
+    <%= f.label :model, class: 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :model, class: 'text_field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :modification, class: 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :modification, class: 'text_field form-control' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :brand %><br>
-    <%= f.text_field :brand %>
-  </div>
-  <div class="field">
-    <%= f.label :model %><br>
-    <%= f.text_field :model %>
-  </div>
-  <div class="field">
-    <%= f.label :modification %><br>
-    <%= f.text_field :modification %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class='col-md-offset-2 col-md-10'>
+      <%= f.submit nil, class: 'btn btn-primary' %>
+      <%= link_to t('.cancel', default: t("helpers.links.cancel")),
+                  automobiles_path, class: 'btn btn-default' %>
+    </div>
   </div>
 <% end %>
