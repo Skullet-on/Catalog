@@ -5,24 +5,20 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:image) %></th>
       <th><%= model_class.human_attribute_name(:brand) %></th>
       <th><%= model_class.human_attribute_name(:model) %></th>
       <th><%= model_class.human_attribute_name(:modification) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', default: t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @automobiles.each do |automobile| %>
       <tr>
-        <td><%= automobile.id %></td>
-          <td><%= image_tag automobile.image.url(:thumb) %></td>
-          <td><%= automobile.brand %></td>
-          <td><%= automobile.model %></td>
-          <td><%= automobile.modification %></td>
-        <td><%=l automobile.created_at, format: :long %></td>
+        <td><%= link_to automobile_path(automobile) do %><%= image_tag automobile.image.url(:thumb), class: "thumbnail" %><%= automobile.comments.count %> comments<% end %></td>
+        <td><%= automobile.brand %></td>
+        <td><%= automobile.model %></td>
+        <td><%= automobile.modification %></td>
         <td>
           <%= link_to automobile_path(automobile), class: 'btn btn-xs', title: "#{ t('.show', default: t('helpers.links.show')) }" do %>
             <%= glyph 'info-sign' %>
