@@ -5,6 +5,8 @@
 
 <div class="fieldset">
   <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:image) %></dt>
+      <dd><pre class="prettyprint"><%= image_tag @automobile.image.url(:medium) %></pre></dd>
       <dt class="label label-default"><%= model_class.human_attribute_name(:brand) %></dt>
       <dd><pre class="prettyprint"><%= @automobile.brand %></pre></dd>
       <dt class="label label-default"><%= model_class.human_attribute_name(:model) %></dt>
