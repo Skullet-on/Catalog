@@ -22,14 +22,15 @@
 
       <div class="col-sm-9">
       </div>
-
-      <div class="col-sm-1 navbar-right">
-        <%= link_to [comment.automobile, comment], class: "Delete", method: :delete do %>
-          <button type="button" class="btn btn-danger" aria-label="Left Align">
-            <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
-          </button>
-        <% end%>
-      </div>
+      <% if can? :destroy, comment %>
+        <div class="col-sm-1 navbar-right">
+          <%= link_to [comment.automobile, comment], class: "Delete", method: :delete do %>
+            <button type="button" class="btn btn-danger" aria-label="Left Align">
+              <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+            </button>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

@@ -17,7 +17,9 @@
   </div>
 <% end %>
 </div>
+<% if can? :manage, "asd" %>
 <p>
 <%= link_to t('.new', default: t("helpers.links.new")),
             new_automobile_path,
             class: 'btn btn-custom' %></p>
+<% end %>

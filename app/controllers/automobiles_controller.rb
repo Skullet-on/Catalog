@@ -14,11 +14,13 @@ class AutomobilesController < ApplicationController
 
   # GET /automobiles/new
   def new
+    authorize! :read, @automobile
     @automobile = Automobile.new
   end
 
   # GET /automobiles/1/edit
   def edit
+    authorize! :update, @automobile
   end
 
   # POST /automobiles
@@ -54,6 +56,7 @@ class AutomobilesController < ApplicationController
   # DELETE /automobiles/1
   # DELETE /automobiles/1.json
   def destroy
+    authorize! :update, @automobile
     @automobile.destroy
     respond_to do |format|
       format.html { redirect_to automobiles_url, notice: 'Automobile was successfully destroyed.' }

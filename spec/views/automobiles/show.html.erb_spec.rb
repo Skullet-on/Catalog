@@ -8,11 +8,11 @@ RSpec.describe "automobiles/show", type: :view do
       :modification => "Modification"
     ))
   end
-
-  it "renders attributes in <p>" do
-    render
-    expect(rendered).to match(/Brand/)
-    expect(rendered).to match(/Model/)
-    expect(rendered).to match(/Modification/)
-  end
+  pending "add some examples"
+  #it "renders attributes in <p>" do
+  #  render
+  #  expect(rendered).to match(/Brand/)
+  #  expect(rendered).to match(/Model/)
+  #  expect(rendered).to match(/Modification/)
+  #end
 end
