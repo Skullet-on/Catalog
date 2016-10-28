@@ -37,6 +37,7 @@ gem 'sass-rails', '~>5.0'
 gem 'bootstrap-sass-extras'
 gem 'devise-bootstrap-views'
 gem 'paperclip'
+gem 'acts_as_votable'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

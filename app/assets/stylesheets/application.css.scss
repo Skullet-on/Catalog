@@ -16,3 +16,59 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "devise_bootstrap_views";
+
+body {
+   background-color: black;
+}
+
+.panel-primary {
+  border-color: #101010;
+}
+.panel-primary > .panel-heading {
+  color: #ffffff;
+  background-color: rgba(10, 10, 10, 0.62);
+  border-color: #101010;
+}
+.panel-primary > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #101010;
+}
+.panel-primary > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #101010;
+}
+
+
+.thumb-box {
+  background-color: #101010;
+}
+
+.navbar-inverse {
+  background: #466368;
+  background: linear-gradient(to right bottom, black, #101010);
+}
+
+.btn-custom {
+  background-color: #101010;
+  border-color: #101010;
+}
+.btn-custom:hover,
+.btn-custom:focus,
+.btn-custom:active,
+.btn-custom.active {
+  background-color: #030303;
+  border-color: #000000;
+}
+.btn-custom.disabled:hover,
+.btn-custom.disabled:focus,
+.btn-custom.disabled:active,
+.btn-custom.disabled.active,
+.btn-custom[disabled]:hover,
+.btn-custom[disabled]:focus,
+.btn-custom[disabled]:active,
+.btn-custom[disabled].active,
+fieldset[disabled] .btn-custom:hover,
+fieldset[disabled] .btn-custom:focus,
+fieldset[disabled] .btn-custom:active,
+fieldset[disabled] .btn-custom.active {
+  background-color: #101010;
+  border-color: #101010;
+}

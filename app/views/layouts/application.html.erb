@@ -42,16 +42,15 @@
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+          <span class="icon-bar">1</span>
+          <span class="icon-bar">2</span>
+          <span class="icon-bar">3</span>
         </button>
         <%= link_to "Home", root_path, class: "navbar-brand" %>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li><%= link_to "Automobiles", automobiles_path %></li>
-          <li><a href="#">Contact</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">    
           <% if user_signed_in? %>
@@ -73,10 +72,8 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
           <%= bootstrap_flash %>
           <%= yield %>
-        </div>
       </div><!--/row-->
 
       <footer>

@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
+
   resources :automobiles do
-    resources :comments
+    resources :comments do
+      put "upvote" => "comments#upvote"
+      put "downvote" => "comments#downvote"
+    end
   end
+
   get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

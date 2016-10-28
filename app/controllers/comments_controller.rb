@@ -15,4 +15,18 @@ class CommentsController < ApplicationController
     redirect_to automobile_path(@automobile)
   end
 
+  def upvote
+    @automobile = Automobile.find(params[:automobile_id])
+    @comment = Comment.find(params[:comment_id])
+    @comment.upvote_from current_user
+    redirect_to automobile_path(@automobile)
+  end
+
+  def downvote
+    @automobile = Automobile.find(params[:automobile_id])
+    @comment = Comment.find(params[:comment_id])
+    @comment.downvote_from current_user
+    redirect_to automobile_path(@automobile)
+  end
+
 end
