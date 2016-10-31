@@ -3,15 +3,15 @@ class Ability
 
   def initialize(user)
 
-    if user.admin?
+    if user && user.admin?
       can :manage, :all
-    else
+    elsif user
       can :destroy, Comment do |comment|
         comment.name == user.email
       end
 
-      can :create, Comment
-      can :show, Automobile
+      can :read, Automobile
+    else
     end
     # Define abilities for the passed in user here. For example:
     #
