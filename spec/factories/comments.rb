@@ -1,8 +1,8 @@
 FactoryGirl.define do
+
   factory :comment do
     name "MyString"
-body "MyText"
-automobile nil
+    body "MyString"
   end
 
 end

@@ -39,6 +39,7 @@ gem 'devise-bootstrap-views'
 gem 'paperclip'
 gem 'acts_as_votable'
 gem "cancan"
+gem 'pry'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
