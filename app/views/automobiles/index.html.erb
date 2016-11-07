@@ -1,7 +1,49 @@
 <%- model_class = Automobile -%>
 <div class="page-header">
-  <h1><%=t '.title', default: model_class.model_name.human.pluralize.titleize %></h1>
+  <h1><%=t '.title', default: model_class.model_name.human.pluralize.titleize + " (#{@automobiles.count})" %></h1>
 </div>
+
+<%= form_tag automobiles_path, :method => "get" do %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+            <div class="input-group" id="adv-search">
+                <%= text_field_tag :search, params[:search], class: "form-control" %>
+                <div class="input-group-btn">
+                    <div class="btn-group" role="group">
+                        <div class="dropdown dropdown-lg">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                            <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                  <div class="form-group">
+                                    <label for="contain">Brand</label><br>
+                                    <%= text_field_tag :br, params[:br], class: "form-control" %><br>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="contain">Model</label><br>
+                                    <%= text_field_tag :mod, params[:mod], class: "form-control" %><br>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="contain">Modification</label><br>
+                                    <%= text_field_tag :modif, params[:modif], class: "form-control" %><br>
+                                  </div>
+                                  <%= submit_tag "Search", class: "btn btn-primary", :br => nil, :mod => nil, :modif => nil, :search => nil %>
+                            </div>
+                        </div>
+                        <%= submit_tag "Search", class: "btn btn-primary", :search => nil %>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+<% end %>
+<br>
+<% form_tag automobiles_path, :method => "get" do %>
+  <% text_field_tag :search, params[:search] %>
+  <% submit_tag "Search" %>
+<% end %>
+
 <div class="row">
 <% @automobiles.each do |automobile| %>
   <div class="col-sm-6 col-md-4">
