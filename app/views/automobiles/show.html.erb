@@ -1,19 +1,41 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Automobile -%>
+<div class="page-header">
+  <h1><%=t '.title', default: model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Brand:</strong>
-  <%= @automobile.brand %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:image) %></dt>
+      <dd>
+      <div class="row">
+        <div class="col-xs-6 col-md-3">
+          <%= image_tag @automobile.image.url(:medium), class: "thumbnail" %>
+        </div>
+      </div>
+      </dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:brand) %></dt>
+      <dd><pre class="prettyprint"><%= @automobile.brand %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:model) %></dt>
+      <dd><pre class="prettyprint"><%= @automobile.model %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:modification) %></dt>
+      <dd><pre class="prettyprint"><%= @automobile.modification %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>Model:</strong>
-  <%= @automobile.model %>
-</p>
+<div id="comments">
+  <h2><%= @automobile.comments.count %> Comments</h2>
+  <%= render @automobile.comments %>
+  <%= render "comments/form" %>
+</div>
 
-<p>
-  <strong>Modification:</strong>
-  <%= @automobile.modification %>
-</p>
-
-<%= link_to 'Edit', edit_automobile_path(@automobile) %> |
-<%= link_to 'Back', automobiles_path %>
+<div class="form-group">
+  <%- link_to t('.back', default: t("helpers.links.back")),
+              automobiles_path, class: 'btn btn-default'  %>
+  <%- link_to t('.edit', default: t("helpers.links.edit")),
+              edit_automobile_path(@automobile), class: 'btn btn-default' %>
+  <%- link_to t('.destroy', default: t("helpers.links.destroy")),
+              automobile_path(@automobile),
+              method: 'delete',
+              data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) },
+              class: 'btn btn-danger' %>
+</div>

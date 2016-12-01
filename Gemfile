@@ -30,6 +30,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'devise'
+gem 'bootstrap-sass'
+gem 'sass-rails', '~>5.0'
+gem 'bootstrap-sass-extras'
+gem 'devise-bootstrap-views'
+gem 'paperclip'
+gem 'acts_as_votable'
+gem "cancan"
+gem 'pry'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

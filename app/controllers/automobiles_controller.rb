@@ -4,7 +4,8 @@ class AutomobilesController < ApplicationController
   # GET /automobiles
   # GET /automobiles.json
   def index
-    @automobiles = Automobile.all
+    @automobiles = Automobile.search(params[:search], params[:br],params[:mod],params[:modif])
+    #@automobiles = Automobile.all
   end
 
   # GET /automobiles/1
@@ -14,11 +15,13 @@ class AutomobilesController < ApplicationController
 
   # GET /automobiles/new
   def new
+    authorize! :read, @automobile
     @automobile = Automobile.new
   end
 
   # GET /automobiles/1/edit
   def edit
+    authorize! :update, @automobile
   end
 
   # POST /automobiles
@@ -54,6 +57,7 @@ class AutomobilesController < ApplicationController
   # DELETE /automobiles/1
   # DELETE /automobiles/1.json
   def destroy
+    authorize! :update, @automobile
     @automobile.destroy
     respond_to do |format|
       format.html { redirect_to automobiles_url, notice: 'Automobile was successfully destroyed.' }
@@ -69,6 +73,6 @@ class AutomobilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def automobile_params
-      params.require(:automobile).permit(:brand, :model, :modification)
+      params.require(:automobile).permit(:brand, :model, :modification, :image)
     end
 end

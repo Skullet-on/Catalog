@@ -1,31 +1,67 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Automobile -%>
+<div class="page-header">
+  <h1><%=t '.title', default: model_class.model_name.human.pluralize.titleize + " (#{@automobiles.count})" %></h1>
+</div>
 
-<h1>Listing Automobiles</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Brand</th>
-      <th>Model</th>
-      <th>Modification</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @automobiles.each do |automobile| %>
-      <tr>
-        <td><%= automobile.brand %></td>
-        <td><%= automobile.model %></td>
-        <td><%= automobile.modification %></td>
-        <td><%= link_to 'Show', automobile %></td>
-        <td><%= link_to 'Edit', edit_automobile_path(automobile) %></td>
-        <td><%= link_to 'Destroy', automobile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<%= form_tag automobiles_path, :method => "get" do %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+            <div class="input-group" id="adv-search">
+                <%= text_field_tag :search, params[:search], class: "form-control" %>
+                <div class="input-group-btn">
+                    <div class="btn-group" role="group">
+                        <div class="dropdown dropdown-lg">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                            <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                  <div class="form-group">
+                                    <label for="contain">Brand</label><br>
+                                    <%= text_field_tag :br, params[:br], class: "form-control" %><br>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="contain">Model</label><br>
+                                    <%= text_field_tag :mod, params[:mod], class: "form-control" %><br>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="contain">Modification</label><br>
+                                    <%= text_field_tag :modif, params[:modif], class: "form-control" %><br>
+                                  </div>
+                                  <%= submit_tag "Search", class: "btn btn-primary", :br => nil, :mod => nil, :modif => nil, :search => nil %>
+                            </div>
+                        </div>
+                        <%= submit_tag "Search", class: "btn btn-primary", :search => nil %>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+<% end %>
 <br>
+<% form_tag automobiles_path, :method => "get" do %>
+  <% text_field_tag :search, params[:search] %>
+  <% submit_tag "Search" %>
+<% end %>
 
-<%= link_to 'New Automobile', new_automobile_path %>
+<div class="row">
+<% @automobiles.each do |automobile| %>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail thumb-box">
+      <%= link_to automobile_path(automobile) do %>
+        <%= image_tag automobile.image.url(:thumb), class: "thumbnail" %>
+        <div class="caption" style="text-align: center">
+          <h3><%= automobile.brand %> <%= automobile.model %> <%= automobile.modification %></h3>
+          <p><%= automobile.comments.count %> comments</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+</div>
+<% if can? :manage, "asd" %>
+<p>
+<%= link_to t('.new', default: t("helpers.links.new")),
+            new_automobile_path,
+            class: 'btn btn-custom' %></p>
+<% end %>
